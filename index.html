@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="script.js"></script>
+    <title>Order Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input, select, button {
+            margin: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        #result {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Order Calculator</h1>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" min="1" value="1">
+    <br>
+    <label for="product">Product:</label>
+    <select id="product">
+        <option value="19.99">T-Shirt - $19.99</option>
+        <option value="39.99">Hoodie - $39.99</option>
+        <option value="9.99">Mug - $9.99</option>
+    </select>
+    <br>
+    <button onclick="calculateOrder()">Calculate</button>
+    <div id="result"></div>
+
+</body>
+</html>
