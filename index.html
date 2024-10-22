@@ -1,40 +1,153 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <script src="script.js"></script>
-    <title>Order Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор стоимости услуги</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
+            margin: 20px;
         }
-        input, select, button {
-            margin: 10px;
-            padding: 5px;
-            font-size: 16px;
+        label, select, input, button {
+            display: block;
+            margin-bottom: 10px;
         }
-        #result {
-            font-size: 20px;
-            font-weight: bold;
-            margin-top: 20px;
+        .error, .error1 {
+            color: red;
         }
     </style>
 </head>
 <body>
-    <h1>Order Calculator</h1>
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" min="1" value="1">
-    <br>
-    <label for="product">Product:</label>
+
+    <h1>Калькулятор стоимости заказа</h1>
+
+    <label for="product">Выберите товар:</label>
     <select id="product">
-        <option value="19.99">T-Shirt - $19.99</option>
-        <option value="39.99">Hoodie - $39.99</option>
-        <option value="9.99">Mug - $9.99</option>
+        <option value="10">Товар 1 - 10 рублей</option>
+        <option value="20">Товар 2 - 20 рублей</option>
+        <option value="30">Товар 3 - 30 рублей</option>
     </select>
-    <br>
-    <button onclick="calculateOrder()">Calculate</button>
-    <div id="result"></div>
+
+    <label for="quantity">Введите количество:</label>
+    <input type="number" id="quantity1" value="1" min="1">
+
+    <button id="calculate">Подсчитать стоимость</button>
+
+    <h2 id="result1"></h2>
+    <p id="error1" class="error"></p>
+
+
+
+    <h1>Калькулятор стоимости услуги</h1>
+    <label for="service">Выберите тип услуги:</label>
+
+    <table>
+        <tr>
+            <td><input type="radio" name="service" value="10" id="service1" checked></td>
+            <td><label for="service1">Услуга 1 - 10 рублей</label></td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="service" value="20" id="service2"></td>
+            <td><label for="service2">Услуга 2 - 20 рублей</label></td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="service" value="30" id="service3"></td>
+            <td><label for="service3">Услуга 3 - 30 рублей</label></td>
+        </tr>
+    </table>
+
+
+    <label for="quantity">Введите количество:</label>
+    <input type="number" id="quantity" value="1" min="1">
+
+    <div id="serviceOptions" style="display: none;">
+        <label for="option">Выберите опцию:</label>
+        <select id="option">
+            <option value="5">Опция A - +5 рублей</option>
+            <option value="10">Опция B - +10 рублей</option>
+        </select>
+    </div>
+
+    <div id="serviceProperty" style="display: none;">
+        <label>
+            <input type="checkbox" id="property"> Дополнительное свойство ( +15 рублей)
+        </label>
+    </div>
+
+    <h2 id="result"></h2>
+    <p id="error" class="error"></p>
+
+    <script>
+        document.getElementById("calculate").onclick = function() {
+            // Очищаем сообщения об ошибках
+            document.getElementById("error1").innerText = "";
+
+            // Получаем цену выбранного товара
+            const productPrice = parseFloat(document.getElementById("product").value);
+            // Получаем количество товара
+            const quantity = document.getElementById("quantity1").value;
+
+            // Проверяем, является ли количество числом
+            if (isNaN(quantity) || quantity <= 0) {
+                document.getElementById("error1").innerText = "Пожалуйста, введите корректное количество товара.";
+                document.getElementById("result1").innerText = "";
+                return;
+            }
+
+            const totalCost = productPrice * quantity;
+
+            // Выводим результат
+            document.getElementById("result1").innerText = "Стоимость заказа: " + totalCost + " рублей.";
+        };
+
+
+        function updatePrice() {
+            const servicePrice = parseFloat(document.querySelector('input[name="service"]:checked').value);
+            const quantity = parseInt(document.getElementById("quantity").value);
+
+            let totalCost = servicePrice * quantity;
+
+            const selectedService = document.querySelector('input[name="service"]:checked').id;
+
+            if (selectedService === 'service2') {
+                const optionPrice = parseFloat(document.getElementById("option").value);
+                totalCost += optionPrice;
+            } else if (selectedService === 'service3') {
+                const isPropertyChecked = document.getElementById("property").checked;
+                if (isPropertyChecked) {
+                    totalCost += 15; // цена свойства
+                }
+            }
+
+            document.getElementById("result").innerText = "Стоимость услуги: " + totalCost + " рублей.";
+        }
+
+        // Обработчик для радиокнопок
+        const services = document.querySelectorAll('input[name="service"]');
+        services.forEach(service => {
+            service.onclick = function() {
+                document.getElementById("serviceOptions").style.display = (this.id === "service2") ? "block" : "none";
+                document.getElementById("serviceProperty").style.display = (this.id === "service3") ? "block" : "none";
+
+                // Обновляем цену при изменении типа услуги
+                updatePrice();
+            };
+        });
+
+        // Обработчик для изменения количества
+        document.getElementById("quantity").oninput = updatePrice;
+
+        // Обработчик для выбора опции
+        document.getElementById("option").onchange = updatePrice;
+
+        // Обработчик для чекбокса свойств
+
+        document.getElementById("property").onchange = updatePrice;
+
+        // Инициализация
+        updatePrice(); // Расчет начальной стоимости
+    </script>
 
 </body>
 </html>
