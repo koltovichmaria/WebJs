@@ -3,20 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <title>Калькулятор стоимости услуги</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        label, select, input, button {
-            display: block;
-            margin-bottom: 10px;
-        }
-        .error, .error1 {
-            color: red;
-        }
-    </style>
 </head>
 <body>
 
@@ -78,76 +70,105 @@
     <h2 id="result"></h2>
     <p id="error" class="error"></p>
 
-    <script>
-        document.getElementById("calculate").onclick = function() {
-            // Очищаем сообщения об ошибках
-            document.getElementById("error1").innerText = "";
+    <div class="container">
+        <div class="image-slider swiper">
+          <div class="image-slider_wrapper swiper-wrapper">
+              <div class="swiper-slide image-slider_slide">
+                  <div class="image-slider_image">
+                      <img src="1.jpg">
+                  </div>
+              </div>
+              <div class="swiper-slide image-slider_slide">
+                  <div class="image-slider_image">
+                      <img src="2.jpg">
+                  </div>
+              </div>
+              <div class="swiper-slide image-slider_slide">
+                  <div class="image-slider_image">
+                      <img src="3.jpg">
+                  </div>
+              </div>
+              <div class="swiper-slide image-slider_slide">
+                  <div class="image-slider_image">
+                      <img src="4.jpg">
+                  </div>
+              </div>
+              <div class="swiper-slide image-slider_slide">
+                  <div class="image-slider_image">
+                      <img src="5.jpg">
+                  </div>
+              </div>
+              <div class="swiper-slide image-slider_slide">
+                  <div class="image-slider_image">
+                      <img src="6.jpg">
+                  </div>
+              </div>
+              <div class="swiper-slide image-slider_slide">
+                  <div class="image-slider_image">
+                      <img src="7.jpg">
+                  </div>
+              </div>
+              <div class="swiper-slide image-slider_slide">
+                  <div class="image-slider_image">
+                      <img src="8.jpg">
+                  </div>
+              </div>
+            </div>
 
-            // Получаем цену выбранного товара
-            const productPrice = parseFloat(document.getElementById("product").value);
-            // Получаем количество товара
-            const quantity = document.getElementById("quantity1").value;
-
-            // Проверяем, является ли количество числом
-            if (isNaN(quantity) || quantity <= 0) {
-                document.getElementById("error1").innerText = "Пожалуйста, введите корректное количество товара.";
-                document.getElementById("result1").innerText = "";
-                return;
-            }
-
-            const totalCost = productPrice * quantity;
-
-            // Выводим результат
-            document.getElementById("result1").innerText = "Стоимость заказа: " + totalCost + " рублей.";
-        };
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            </div>
+        </div>
 
 
-        function updatePrice() {
-            const servicePrice = parseFloat(document.querySelector('input[name="service"]:checked').value);
-            const quantity = parseInt(document.getElementById("quantity").value);
+    <section class="formcarry-container">
+  <form action="https://formcarry.com/s/wm5A3e-oM7P" method="POST" enctype="multipart/form-data">
 
-            let totalCost = servicePrice * quantity;
+    <div class="formcarry-block">
+      <label for="fc-generated-1-name">Full Name</label>
+      <input type="text" name="name" id="fc-generated-1-name" placeholder="Your first and last name" />
+    </div>
 
-            const selectedService = document.querySelector('input[name="service"]:checked').id;
+    <div class="formcarry-block">
+      <label for="fc-generated-1-email">Your Email Address</label>
+      <input type="email" name="email" id="fc-generated-1-email" placeholder="john@doe.com" />
+    </div>
 
-            if (selectedService === 'service2') {
-                const optionPrice = parseFloat(document.getElementById("option").value);
-                totalCost += optionPrice;
-            } else if (selectedService === 'service3') {
-                const isPropertyChecked = document.getElementById("property").checked;
-                if (isPropertyChecked) {
-                    totalCost += 15; // цена свойства
-                }
-            }
+      <div class="formcarry-block">
+      <label for="fc-generated-1-phone">Your Phone Number</label>
+      <input type="tel" name="tel" id="fc-generated-1-phone" placeholder="+8(999)999-99-99" />
+    </div>
 
-            document.getElementById("result").innerText = "Стоимость услуги: " + totalCost + " рублей.";
-        }
+      <div class="formcarry-block">
+      <label for="fc-generated-1-org">Your Organization</label>
+      <input type="text" name="org" id="fc-generated-1-org" placeholder="Your organization" />
+    </div>
 
-        // Обработчик для радиокнопок
-        const services = document.querySelectorAll('input[name="service"]');
-        services.forEach(service => {
-            service.onclick = function() {
-                document.getElementById("serviceOptions").style.display = (this.id === "service2") ? "block" : "none";
-                document.getElementById("serviceProperty").style.display = (this.id === "service3") ? "block" : "none";
 
-                // Обновляем цену при изменении типа услуги
-                updatePrice();
-            };
-        });
+    <div class="formcarry-block">
+      <label for="fc-generated-1-message">Your message</label>
+      <textarea name="message" name="message" id="fc-generated-1-message" placeholder="Enter your message..."></textarea>
+    </div>
 
-        // Обработчик для изменения количества
-        document.getElementById("quantity").oninput = updatePrice;
+      <div class="consent">
+          <input name="consent" type="checkbox" id="consent" required>
+          <label for="consent">I agree with policy</label>
+      </div>
 
-        // Обработчик для выбора опции
-        document.getElementById("option").onchange = updatePrice;
+    <div class="formcarry-block">
+      <button type="submit">Send</button>
+    </div>
 
-        // Обработчик для чекбокса свойств
+  </form>
+</section>
 
-        document.getElementById("property").onchange = updatePrice;
 
-        // Инициализация
-        updatePrice(); // Расчет начальной стоимости
-    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="form.js"></script>
 
 </body>
 </html>
