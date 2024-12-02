@@ -4,171 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css"/>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <title>Калькулятор стоимости услуги</title>
+    <title>Форма</title>
 </head>
 <body>
 
-    <h1>Калькулятор стоимости заказа</h1>
-
-    <label for="product">Выберите товар:</label>
-    <select id="product">
-        <option value="10">Товар 1 - 10 рублей</option>
-        <option value="20">Товар 2 - 20 рублей</option>
-        <option value="30">Товар 3 - 30 рублей</option>
-    </select>
-
-    <label for="quantity">Введите количество:</label>
-    <input type="number" id="quantity1" value="1" min="1">
-
-    <button id="calculate">Подсчитать стоимость</button>
-
-    <h2 id="result1"></h2>
-    <p id="error1" class="error"></p>
-
-
-
-    <h1>Калькулятор стоимости услуги</h1>
-    <label for="service">Выберите тип услуги:</label>
-
-    <table>
-        <tr>
-            <td><input type="radio" name="service" value="10" id="service1" checked></td>
-            <td><label for="service1">Услуга 1 - 10 рублей</label></td>
-        </tr>
-        <tr>
-            <td><input type="radio" name="service" value="20" id="service2"></td>
-            <td><label for="service2">Услуга 2 - 20 рублей</label></td>
-        </tr>
-        <tr>
-            <td><input type="radio" name="service" value="30" id="service3"></td>
-            <td><label for="service3">Услуга 3 - 30 рублей</label></td>
-        </tr>
-    </table>
-
-
-    <label for="quantity">Введите количество:</label>
-    <input type="number" id="quantity" value="1" min="1">
-
-    <div id="serviceOptions" style="display: none;">
-        <label for="option">Выберите опцию:</label>
-        <select id="option">
-            <option value="5">Опция A - +5 рублей</option>
-            <option value="10">Опция B - +10 рублей</option>
-        </select>
+    <div class="center">
+        <button id="show-login">Send</button>
     </div>
-
-    <div id="serviceProperty" style="display: none;">
-        <label>
-            <input type="checkbox" id="property"> Дополнительное свойство ( +15 рублей)
-        </label>
-    </div>
-
-    <h2 id="result"></h2>
-    <p id="error" class="error"></p>
-
-    <div class="container">
-        <div class="image-slider swiper">
-          <div class="image-slider_wrapper swiper-wrapper">
-              <div class="swiper-slide image-slider_slide">
-                  <div class="image-slider_image">
-                      <img src="1.jpg">
-                  </div>
-              </div>
-              <div class="swiper-slide image-slider_slide">
-                  <div class="image-slider_image">
-                      <img src="2.jpg">
-                  </div>
-              </div>
-              <div class="swiper-slide image-slider_slide">
-                  <div class="image-slider_image">
-                      <img src="3.jpg">
-                  </div>
-              </div>
-              <div class="swiper-slide image-slider_slide">
-                  <div class="image-slider_image">
-                      <img src="4.jpg">
-                  </div>
-              </div>
-              <div class="swiper-slide image-slider_slide">
-                  <div class="image-slider_image">
-                      <img src="5.jpg">
-                  </div>
-              </div>
-              <div class="swiper-slide image-slider_slide">
-                  <div class="image-slider_image">
-                      <img src="6.jpg">
-                  </div>
-              </div>
-              <div class="swiper-slide image-slider_slide">
-                  <div class="image-slider_image">
-                      <img src="7.jpg">
-                  </div>
-              </div>
-              <div class="swiper-slide image-slider_slide">
-                  <div class="image-slider_image">
-                      <img src="8.jpg">
-                  </div>
-              </div>
-            </div>
-
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-            </div>
+    <div class="popup">
+        <div class="close-btn">&times;</div>
+        <div class="form">
+            <h2>Log in</h2>
+            <form id="feedbackForm">
+                <div class="form-element">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="fullName" placeholder="Enter full name">
+                </div>
+                <div class="form-element">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter email">
+                </div>
+                <div class="form-element">
+                    <label for="tel">Phone</label>
+                    <input type="tel" id="tel"  name="phone" placeholder="Enter phone number">
+                </div>
+                <div class="form-element">
+                    <label for="organization">Organization</label>
+                    <input type="text" id="organization" name="organization" placeholder="Enter organization">
+                </div>
+                <div class="form-element">
+                    <textarea id="message" name="message" placeholder="Enter message"></textarea>
+                </div>
+                <div class="form-element">
+                    <input type="checkbox" id="remember-me" name="policy" required>
+                    <label for="remember-me">Remember me</label>
+                </div>
+                <div class="form-element">
+                    <button type="submit">Sign in</button>
+                </div>
+            </form>
         </div>
-
-
-    <section class="formcarry-container">
-  <form action="https://formcarry.com/s/wm5A3e-oM7P" method="POST" enctype="multipart/form-data">
-
-    <div class="formcarry-block">
-      <label for="fc-generated-1-name">Full Name</label>
-      <input type="text" name="name" id="fc-generated-1-name" placeholder="Your first and last name" />
     </div>
-
-    <div class="formcarry-block">
-      <label for="fc-generated-1-email">Your Email Address</label>
-      <input type="email" name="email" id="fc-generated-1-email" placeholder="john@doe.com" />
-    </div>
-
-      <div class="formcarry-block">
-      <label for="fc-generated-1-phone">Your Phone Number</label>
-      <input type="tel" name="tel" id="fc-generated-1-phone" placeholder="+8(999)999-99-99" />
-    </div>
-
-      <div class="formcarry-block">
-      <label for="fc-generated-1-org">Your Organization</label>
-      <input type="text" name="org" id="fc-generated-1-org" placeholder="Your organization" />
-    </div>
-
-
-    <div class="formcarry-block">
-      <label for="fc-generated-1-message">Your message</label>
-      <textarea name="message" name="message" id="fc-generated-1-message" placeholder="Enter your message..."></textarea>
-    </div>
-
-      <div class="consent">
-          <input name="consent" type="checkbox" id="consent" required>
-          <label for="consent">I agree with policy</label>
-      </div>
-
-    <div class="formcarry-block">
-      <button type="submit">Send</button>
-    </div>
-
-  </form>
-</section>
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
-    <script src="form.js"></script>
 
 </body>
 </html>
